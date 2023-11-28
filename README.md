@@ -12,14 +12,14 @@ https://reqres.in/ - Открытое API
 4) Добавить возможность масштабировать проект (К примеру: если в WEB - добавится новая страница, а в API добавится новая версия API. То в таком случае добавляется новый класс и не нарушается текущая реализация)
 
 Информация о тестах:
-- В UI тестах предполагается, что chromedriver находится в корневом каталоге диска C (c:/chromedriver.exe)
+- В UI тестах предполагается, что chromedriver находится в корневом каталоге диска C (c:/chromedriver.exe). 
   Поменять путь до chromedriver можно в confest.py, фикстура browser, executable_path="c:/chromedriver.exe"
 
 - Скачать подходящий для вашей версии Chrome chromedriver можно по ссылке:
   https://chromedriver.chromium.org/downloads
 
-- Запустить все тесты можно из папки tests командой, также будет сформирован allure отчет:
-  pytest --alluredir ./allure_report
+- Запустить все тесты можно из директории tests командой: pytest --alluredir ./allure_report. 
+  Также будет сформирован allure отчет.
 
 - Запуск отдельного теста: pytest --alluredir ./allure_report  test_create_user.py
 

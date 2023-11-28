@@ -22,8 +22,6 @@ class ReqresLocators:
         By.XPATH,
         f"//div[@class = 'endpoints']//li[@data-id = '{request_name}' and @class='active']/a",
     )
-    # REQUEST_BUTTON = lambda request_name: (By.XPATH, "//div[@class = 'endpoints']//li/a[text() = '" + request_name + "']")
-    # ACTIVE_REQUEST = lambda request_name: (By.XPATH, "//div[@class = 'endpoints']//li[@class='active']/a[text() = '" + request_name + "']")
     RESPONSE = (By.XPATH, "//div[@class='output']//div[@class='response']")
     RESPONSE_STATUS_CODE = (
         By.XPATH,
@@ -64,13 +62,21 @@ class ReqresUI(Browser):
         assert self.find_element(ReqresLocators.RESPONSE, time=timeout).is_displayed()
         return self
 
+    @allure.step("Ожидание, что код ответа виден")
+    def wait_until_response_code_is_displayed(self, timeout=Browser._DEFAULT_TIMEOUT):
+        assert self.find_element(ReqresLocators.RESPONSE_STATUS_CODE, time=timeout).is_displayed()
+        return self
+
     @allure.step("Выполняем ui тест")
-    def run_ui_test(self, request_name):
-        with allure.step("Переходим на портал reqres.in и выполняем запрос"):
+    def go_to_reqres_and_send_request_by_ui(self, request_name):
+        with allure.step("Переходим на портал reqres.in"):
             self.go_to_reqres()
             self.wait_until_main_page_is_displayed()
         with allure.step("Выполняем ui запрос"):
             self.send_request(request_name)
+        with allure.step("Проверяем, что код ответа и response видны"):
+            self.wait_until_response_code_is_displayed()
+            self.wait_until_response_is_displayed()
         with allure.step("Возвращаем response"):
             return self.get_responce_status_code(), self.get_response_json()
 

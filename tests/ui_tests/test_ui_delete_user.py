@@ -1,7 +1,6 @@
 """Тест кейс для UI запроса delete user"""
 import allure
 import pytest
-
 from helper.load import load_data
 from ui.page import ReqresUI
 
@@ -15,7 +14,10 @@ from ui.page import ReqresUI
 def test_ui_delete_user(browser, reqres_api, request_name, user_id):
     reqres_main_page = ReqresUI(browser)
     with allure.step("Переходим на портал reqres.in и выполняем UI запрос"):
-        ui_status_code, ui_response_json = reqres_main_page.run_ui_test(request_name)
+        (
+            ui_status_code,
+            ui_response_json,
+        ) = reqres_main_page.go_to_reqres_and_send_request_by_ui(request_name)
     with allure.step("Выполняем api запрос"):
         api_status_code, api_response_json = reqres_api.reqres_delete(
             user_id

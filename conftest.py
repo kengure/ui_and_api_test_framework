@@ -13,6 +13,7 @@ def reqres_api() -> ReqresApi:
 
 @pytest.fixture(scope="session")
 def browser():
+    """Инициализация WebDriver"""
     driver = webdriver.Chrome(executable_path="c:/chromedriver.exe")
     yield driver
     driver.quit()

@@ -1,7 +1,6 @@
 """Тест кейс для API запроса create user"""
 import allure
 import pytest
-
 from helper.load import load_data
 
 

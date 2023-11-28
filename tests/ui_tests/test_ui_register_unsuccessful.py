@@ -1,7 +1,6 @@
 """Тест кейс для UI запроса register unsuccessful"""
 import allure
 import pytest
-
 from helper.load import load_data
 from ui.page import ReqresUI
 
@@ -18,7 +17,10 @@ def test_ui_register_unsuccessful_parameters(
 ):
     reqres_main_page = ReqresUI(browser)
     with allure.step("Переходим на портал reqres.in и выполняем UI запрос"):
-        ui_status_code, ui_response_json = reqres_main_page.run_ui_test(request_name)
+        (
+            ui_status_code,
+            ui_response_json,
+        ) = reqres_main_page.go_to_reqres_and_send_request_by_ui(request_name)
     with allure.step("Выполняем api запрос"):
         api_status_code, api_response_json = reqres_api.reqres_register(
             request_parameters

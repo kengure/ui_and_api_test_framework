@@ -1,7 +1,6 @@
 """Тест кейс для API запроса list users with delay"""
 import allure
 import pytest
-
 from helper.load import load_data
 
 

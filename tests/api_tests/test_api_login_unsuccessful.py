@@ -1,7 +1,6 @@
 """Тест кейс для API запроса login unsuccessful"""
 import allure
 import pytest
-
 from helper.load import load_data
 
 

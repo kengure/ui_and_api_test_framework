@@ -1,7 +1,6 @@
 """Тест кейс для API запроса register successful"""
 import allure
 import pytest
-
 from helper.load import load_data
 
 

@@ -1,7 +1,6 @@
 """Тест кейс для API запроса single resource"""
 import allure
 import pytest
-
 from helper.load import load_data
 
 
